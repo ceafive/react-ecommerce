@@ -9,13 +9,12 @@
   background-color: black;
   color: white;
   text-transform: uppercase;
-  font-family: 'Blinker', sans-serif;
+  font-family: "Blinker", sans-serif;
   font-weight: bolder;
   border: none;
   cursor: pointer;
   display: flex;
-  justify-content: center; 
-
+  justify-content: center;
 
   &:hover {
     background-color: white;
@@ -24,7 +23,7 @@
   }
 
   &.google-sign-in {
-    background-color: #DB4437;
+    background-color: #db4437;
     color: #fff;
 
     &:hover {

@@ -33,7 +33,7 @@ class App extends React.Component {
 
   componentDidMount() {
     // eslint-disable-next-line no-unused-vars
-    const { setCurrentUser, collectionsArray } = this.props;
+    const { setCurrentUser, collections } = this.props;
 
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
@@ -50,7 +50,7 @@ class App extends React.Component {
       // *RUN ONLY ONCE* TO ADD ITEMS FROM LOCAL DB TO FIREBASE STORE
       // addCollectionAndDocuments(
       //   "collections",
-      //   collectionsArray.map(({ title, items }) => ({ title, items }))
+      //   collections.map(({ title, items }) => ({ title, items }))
       // );
     });
   }
@@ -86,7 +86,7 @@ class App extends React.Component {
 
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
-  collectionsArray: selectCollectionsForPreview,
+  collections: selectCollectionsForPreview,
 });
 
 const mapDispatchToProps = (dispatch) => ({

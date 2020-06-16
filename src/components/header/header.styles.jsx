@@ -1,5 +1,10 @@
-import styled from "styled-components";
-import { NavLink, Link } from "react-router-dom";
+import styled, { css } from "styled-components";
+import { Link, NavLink } from "react-router-dom";
+
+const LinkStyles = css`
+  text-decoration: none;
+  color: #000;
+`;
 
 export const HeaderContainer = styled.div`
   height: 70px;
@@ -13,6 +18,7 @@ export const LogoContainer = styled(Link)`
   height: 100%;
   width: 70px;
   padding: 25px;
+  ${LinkStyles}
 `;
 
 export const OptionsContainer = styled.div`
@@ -26,4 +32,5 @@ export const OptionsContainer = styled.div`
 export const OptionNavLink = styled(NavLink)`
   padding: 10px 15px;
   cursor: pointer;
+  ${LinkStyles}
 `;

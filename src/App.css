@@ -1,13 +1,8 @@
-body {
-    font-family: 'Blinker', sans-serif;
-    padding: 20px 60px;
-}
-
-a {
-    text-decoration: none;
-    color: #000;
-}
-
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Blinker", sans-serif;
+  padding: 20px 60px;
 }

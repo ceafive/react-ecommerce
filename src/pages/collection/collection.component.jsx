@@ -9,8 +9,7 @@ import {
   CollectionPageItem,
 } from "./collection.styles";
 
-const CollectionPage = ({ collection }) => {
-  const { title, items } = collection;
+const CollectionPage = ({ collection: { title, items } }) => {
   return (
     <CollectionPageContainer>
       <CollectionPageTitle>{title}</CollectionPageTitle>

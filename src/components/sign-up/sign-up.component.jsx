@@ -1,27 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { emailSignUpStart } from "../../redux/user/user.action";
 
 import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
 
-import "./sign-up.styles.scss";
+import { SignUpContainer, SignUpTitle } from "./sign-up.styles";
 
-class SignUp extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      displayName: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-    };
-  }
+const SignUp = ({ emailSignUpStart }) => {
+  const [userCredentials, setUserCredentials] = useState({
+    displayName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
 
-  handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    const { displayName, email, password, confirmPassword } = this.state;
-    const { emailSignUpStart } = this.props;
+    const { displayName, email, password, confirmPassword } = userCredentials;
     if (password !== confirmPassword) {
       alert("Passwords Don't Match");
       return;
@@ -29,56 +25,53 @@ class SignUp extends React.Component {
     emailSignUpStart(displayName, email, password);
   };
 
-  handleChange = (event) => {
+  const handleChange = (event) => {
     const { name, value } = event.target;
-    this.setState({ [name]: value });
+    setUserCredentials({ ...userCredentials, [name]: value });
   };
 
-  render() {
-    const { displayName, email, password, confirmPassword } = this.state;
-    return (
-      <div className="sign-up">
-        <h2 className="title">I do not have an account</h2>
-        <span>Sign up with your email and password</span>
-        <form className="sign-up-form" onSubmit={this.handleSubmit}>
-          <FormInput
-            type="text"
-            name="displayName"
-            value={displayName}
-            onChange={this.handleChange}
-            label="display name"
-            required
-          />
-          <FormInput
-            type="email"
-            name="email"
-            value={email}
-            onChange={this.handleChange}
-            label="email"
-            required
-          />
-          <FormInput
-            type="password"
-            name="password"
-            value={password}
-            onChange={this.handleChange}
-            label="password"
-            required
-          />
-          <FormInput
-            type="password"
-            name="confirmPassword"
-            value={confirmPassword}
-            onChange={this.handleChange}
-            label="confirm password"
-            required
-          />
-          <CustomButton type="submit">SIGN UP</CustomButton>
-        </form>
-      </div>
-    );
-  }
-}
+  return (
+    <SignUpContainer>
+      <SignUpTitle>I do not have an account</SignUpTitle>
+      <span>Sign up with your email and password</span>
+      <form onSubmit={handleSubmit}>
+        <FormInput
+          type="text"
+          name="displayName"
+          value={userCredentials.displayName}
+          onChange={handleChange}
+          label="display name"
+          required
+        />
+        <FormInput
+          type="email"
+          name="email"
+          value={userCredentials.email}
+          onChange={handleChange}
+          label="email"
+          required
+        />
+        <FormInput
+          type="password"
+          name="password"
+          value={userCredentials.password}
+          onChange={handleChange}
+          label="password"
+          required
+        />
+        <FormInput
+          type="password"
+          name="confirmPassword"
+          value={userCredentials.confirmPassword}
+          onChange={handleChange}
+          label="confirm password"
+          required
+        />
+        <CustomButton type="submit">SIGN UP</CustomButton>
+      </form>
+    </SignUpContainer>
+  );
+};
 
 const mapDispatchToProps = (dispatch) => ({
   emailSignUpStart: (displayName, email, password) =>
